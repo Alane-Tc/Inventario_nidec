@@ -170,7 +170,7 @@ public class Principal extends javax.swing.JFrame {
 
             },
             new String [] {
-                "ID", "PRODUCTO", "NOMBRES", "MARCA", "MODELO", "NUM SERIE", "LOCALIZACION"
+                "ID", "PRODUCTO", "NOMBRES", "MARCA", "MODELO", "NUM SERIE", "LOCALIZACIÓN"
             }
         ));
         TablaDatos.addMouseListener(new java.awt.event.MouseAdapter() {
