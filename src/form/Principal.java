@@ -369,8 +369,27 @@ public class Principal extends javax.swing.JFrame {
     }
 
     void listar() {
-        
-
+        String sql = "SELECT * FROM `productos`";
+        try {
+            con = cn.getConnection();
+            st = con.createStatement();
+            rs = st.executeQuery(sql);
+            Object[] producto = new Object[7];
+             model = (DefaultTableModel) TablaDatos.getModel();
+             while (rs.next()) {
+                producto[0]=rs.getInt("ID");
+                producto[1]=rs.getString("TipoProducto");
+                producto[2]=rs.getString("Nombre");
+                producto[3]=rs.getString("Marca");
+                producto[4]=rs.getString("Modelo");
+                producto[5]=rs.getString("NumSerie");
+                producto[6]=rs.getString("Localizacion"); 
+                model.addRow(producto);
+            }
+            TablaDatos.setModel(model);
+        } catch (Exception e) {
+            System.out.println("Error al mostrar contenido de la base de datos:  " + e);
+        }
     }
 
    
