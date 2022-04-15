@@ -1,7 +1,10 @@
 package form;
 
 import config.Conexion;
+import java.awt.Dialog;
 import java.sql.*;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -13,7 +16,11 @@ public class Principal extends javax.swing.JFrame {
     Statement st;
     ResultSet rs;
     int id = 0;
-
+    
+    Icon iconoError = new ImageIcon(getClass().getResource("../images/Icons/cerrar.png"));
+    Icon iconoGuardar = new ImageIcon(getClass().getResource("../images/Icons/disquete.png"));
+    Icon iconoCajas = new ImageIcon(getClass().getResource("../images/Icons/pencil.png"));
+    
     public Principal() {
         initComponents();
         setLocationRelativeTo(null);
@@ -31,20 +38,20 @@ public class Principal extends javax.swing.JFrame {
 
         jTextField2 = new javax.swing.JTextField();
         jPanel1 = new javax.swing.JPanel();
-        txtDNI = new javax.swing.JTextField();
+        txtProductos = new javax.swing.JTextField();
         txtNom = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         txtId = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        txtNom1 = new javax.swing.JTextField();
+        txtMarca = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
-        txtNom2 = new javax.swing.JTextField();
+        txtModelo = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
-        txtNom3 = new javax.swing.JTextField();
+        txtNumSerie = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
-        txtNom4 = new javax.swing.JTextField();
+        txtLocalizacion = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         TablaDatos = new javax.swing.JTable();
@@ -62,9 +69,9 @@ public class Principal extends javax.swing.JFrame {
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Datos"));
 
-        txtDNI.addActionListener(new java.awt.event.ActionListener() {
+        txtProductos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtDNIActionPerformed(evt);
+                txtProductosActionPerformed(evt);
             }
         });
 
@@ -111,22 +118,22 @@ public class Principal extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtNom1, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtNom2, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtNom3, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(txtDNI, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtProductos, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, 199, Short.MAX_VALUE)))
+                        .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, 67, Short.MAX_VALUE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtMarca, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtModelo, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtNumSerie, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(81, 81, 81))
-                    .addComponent(txtNom4))
+                    .addComponent(txtLocalizacion))
                 .addGap(158, 158, 158))
         );
         jPanel1Layout.setVerticalGroup(
@@ -137,12 +144,12 @@ public class Principal extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtNom1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtMarca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel9))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtNom2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtModelo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtNom3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(txtNumSerie, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txtId)
@@ -152,9 +159,9 @@ public class Principal extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(txtDNI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtProductos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(jLabel7)
-                                .addComponent(txtNom4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(txtLocalizacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txtNom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -277,10 +284,10 @@ public class Principal extends javax.swing.JFrame {
                     .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(367, 367, 367)
                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(337, 337, 337))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -305,6 +312,7 @@ public class Principal extends javax.swing.JFrame {
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
         
         listar();
+        agregar();
         
     }//GEN-LAST:event_btnAgregarActionPerformed
 
@@ -329,9 +337,9 @@ public class Principal extends javax.swing.JFrame {
       
     }//GEN-LAST:event_TablaDatosMouseClicked
 
-    private void txtDNIActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDNIActionPerformed
+    private void txtProductosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtProductosActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtDNIActionPerformed
+    }//GEN-LAST:event_txtProductosActionPerformed
 
     /**
      * @param args the command line arguments
@@ -369,11 +377,65 @@ public class Principal extends javax.swing.JFrame {
     }
 
     void listar() {
-        
-
+        String sql = "SELECT * FROM `productos`";
+        try {
+            con = cn.getConnection();
+            st = con.createStatement();
+            rs = st.executeQuery(sql);
+            Object[] producto = new Object[7];
+             model = (DefaultTableModel) TablaDatos.getModel();
+             while (rs.next()) {
+                producto[0]=rs.getInt("ID");
+                producto[1]=rs.getString("TipoProducto");
+                producto[2]=rs.getString("Nombre");
+                producto[3]=rs.getString("Marca");
+                producto[4]=rs.getString("Modelo");
+                producto[5]=rs.getString("NumSerie");
+                producto[6]=rs.getString("Localizacion"); 
+                model.addRow(producto);
+            }
+            TablaDatos.setModel(model);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error al mostrar contenido de la base de datos", "Mensaje de Error", JOptionPane.PLAIN_MESSAGE, iconoError);
+        }
     }
-
-   
+    
+    void agregar(){
+        String tipoProducto = txtProductos.getText();
+        String nombre = txtNom.getText();
+        String marca = txtMarca.getText();
+        String modelo = txtModelo.getText();
+        String numSerie = txtNumSerie.getText();
+        String local = txtLocalizacion.getText();
+        
+        if(tipoProducto.equals("") || nombre.equals("") || marca.equals("") || modelo.equals("") || numSerie.equals("") || local.equals("")){
+            JOptionPane.showMessageDialog(null, "Favor de llenar todos los datos faltantes", "Mensaje de Error", JOptionPane.PLAIN_MESSAGE, iconoCajas);
+            if(model.getRowCount()>0){
+                 limpiarTabla(model);
+              }
+        }else{
+            String sql = "insert into `productos`(`TipoProducto`,`Nombre`,`Marca`,`Modelo`,`NumSerie`,`Localizacion`)values('"+tipoProducto+" ','"+nombre+"','"+marca+"','"+modelo+"','"+numSerie+"','"+local+"')";
+            try {
+                con = cn.getConnection();
+                st = con.createStatement();
+                st.executeUpdate(sql);
+                JOptionPane.showMessageDialog(null, "Producto agregado correctamente", "Mensaje de guardar", JOptionPane.PLAIN_MESSAGE, iconoGuardar);
+                limpiarTabla(model);
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Error al agregar los datos a la base de datos", "Mensaje de Error", JOptionPane.PLAIN_MESSAGE, iconoError);
+                 System.err.println("Error: "+e);
+            }
+            
+        }
+    }
+    
+      void limpiarTabla(DefaultTableModel model) {
+       
+         for (int i = 0; i <= TablaDatos.getRowCount()-1; i++) {
+            model.removeRow(i);
+            i = i - 1;
+         }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable TablaDatos;
@@ -395,12 +457,12 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField txtDNI;
     private javax.swing.JTextField txtId;
+    private javax.swing.JTextField txtLocalizacion;
+    private javax.swing.JTextField txtMarca;
+    private javax.swing.JTextField txtModelo;
     private javax.swing.JTextField txtNom;
-    private javax.swing.JTextField txtNom1;
-    private javax.swing.JTextField txtNom2;
-    private javax.swing.JTextField txtNom3;
-    private javax.swing.JTextField txtNom4;
+    private javax.swing.JTextField txtNumSerie;
+    private javax.swing.JTextField txtProductos;
     // End of variables declaration//GEN-END:variables
 }
