@@ -3,6 +3,8 @@ package form;
 import config.Conexion;
 import java.awt.Dialog;
 import java.sql.*;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -14,7 +16,11 @@ public class Principal extends javax.swing.JFrame {
     Statement st;
     ResultSet rs;
     int id = 0;
-
+    
+    Icon iconoError = new ImageIcon(getClass().getResource("../images/Icons/cerrar.png"));
+    Icon iconoGuardar = new ImageIcon(getClass().getResource("../images/Icons/disquete.png"));
+    Icon iconoCajas = new ImageIcon(getClass().getResource("../images/Icons/pencil.png"));
+    
     public Principal() {
         initComponents();
         setLocationRelativeTo(null);
@@ -278,10 +284,10 @@ public class Principal extends javax.swing.JFrame {
                     .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(367, 367, 367)
                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(337, 337, 337))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -306,6 +312,7 @@ public class Principal extends javax.swing.JFrame {
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
         
         listar();
+        agregar();
         
     }//GEN-LAST:event_btnAgregarActionPerformed
 
@@ -389,11 +396,46 @@ public class Principal extends javax.swing.JFrame {
             }
             TablaDatos.setModel(model);
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Error al mostrar contenido de la base de datos");
+            JOptionPane.showMessageDialog(null, "Error al mostrar contenido de la base de datos", "Mensaje de Error", JOptionPane.PLAIN_MESSAGE, iconoError);
         }
     }
-
-   
+    
+    void agregar(){
+        String tipoProducto = txtProductos.getText();
+        String nombre = txtNom.getText();
+        String marca = txtMarca.getText();
+        String modelo = txtModelo.getText();
+        String numSerie = txtNumSerie.getText();
+        String local = txtLocalizacion.getText();
+        
+        if(tipoProducto.equals("") || nombre.equals("") || marca.equals("") || modelo.equals("") || numSerie.equals("") || local.equals("")){
+            JOptionPane.showMessageDialog(null, "Favor de llenar todos los datos faltantes", "Mensaje de Error", JOptionPane.PLAIN_MESSAGE, iconoCajas);
+            if(model.getRowCount()>0){
+                 limpiarTabla(model);
+              }
+        }else{
+            String sql = "insert into `productos`(`TipoProducto`,`Nombre`,`Marca`,`Modelo`,`NumSerie`,`Localizacion`)values('"+tipoProducto+" ','"+nombre+"','"+marca+"','"+modelo+"','"+numSerie+"','"+local+"')";
+            try {
+                con = cn.getConnection();
+                st = con.createStatement();
+                st.executeUpdate(sql);
+                JOptionPane.showMessageDialog(null, "Producto agregado correctamente", "Mensaje de guardar", JOptionPane.PLAIN_MESSAGE, iconoGuardar);
+                limpiarTabla(model);
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Error al agregar los datos a la base de datos", "Mensaje de Error", JOptionPane.PLAIN_MESSAGE, iconoError);
+                 System.err.println("Error: "+e);
+            }
+            
+        }
+    }
+    
+      void limpiarTabla(DefaultTableModel model) {
+       
+         for (int i = 0; i <= TablaDatos.getRowCount()-1; i++) {
+            model.removeRow(i);
+            i = i - 1;
+         }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable TablaDatos;
