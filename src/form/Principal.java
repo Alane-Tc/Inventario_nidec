@@ -20,6 +20,7 @@ public class Principal extends javax.swing.JFrame {
     Icon iconoError = new ImageIcon(getClass().getResource("../images/Icons/cerrar.png"));
     Icon iconoGuardar = new ImageIcon(getClass().getResource("../images/Icons/disquete.png"));
     Icon iconoCajas = new ImageIcon(getClass().getResource("../images/Icons/pencil.png"));
+    Icon iconoProductoEliminado = new ImageIcon(getClass().getResource("../images/Icons/paquete.png"));
     
     public Principal() {
         initComponents();
@@ -234,7 +235,7 @@ public class Principal extends javax.swing.JFrame {
             }
         });
 
-        btnNuevo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/search.png"))); // NOI18N
+        btnNuevo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/boton-actualizar.png"))); // NOI18N
         btnNuevo.setText("Nuevo");
         btnNuevo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -310,30 +311,49 @@ public class Principal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
-        
+        Agregar(); 
         listar();
-        agregar();
-        
+        nuevo(); 
     }//GEN-LAST:event_btnAgregarActionPerformed
 
     private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
-       
+        Modificar(); 
         listar();
-        
+        nuevo();
     }//GEN-LAST:event_btnModificarActionPerformed
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
-       
-        listar();
-       
+       Eliminar();
+       listar();
+       nuevo();   
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void btnNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoActionPerformed
-       
+       nuevo();
     }//GEN-LAST:event_btnNuevoActionPerformed
 
     private void TablaDatosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TablaDatosMouseClicked
         int row = TablaDatos.getSelectedRow();
+        if(row == -1){
+            JOptionPane.showMessageDialog(null, "No se selecciono una fila", "Seleccionar Fila", JOptionPane.PLAIN_MESSAGE, iconoError);
+        }else{
+            
+             id = Integer.parseInt((String) TablaDatos.getValueAt(row, 0).toString());
+             String tipoProducto = (String) TablaDatos.getValueAt(row, 1);
+             String nombre = (String) TablaDatos.getValueAt(row, 2);
+             String marca = (String) TablaDatos.getValueAt(row, 3);
+             String modelo = (String) TablaDatos.getValueAt(row, 4);
+             String numSerie = (String) TablaDatos.getValueAt(row, 5);
+             String local = (String) TablaDatos.getValueAt(row, 6);
+             
+             txtId.setText("" + id);
+             txtProductos.setText(tipoProducto);
+             txtNom.setText(nombre);
+             txtMarca.setText(marca);
+             txtModelo.setText(modelo);
+             txtNumSerie.setText(numSerie);
+            txtLocalizacion.setText(local);        
+        }
       
     }//GEN-LAST:event_TablaDatosMouseClicked
 
@@ -400,7 +420,7 @@ public class Principal extends javax.swing.JFrame {
         }
     }
     
-    void agregar(){
+    void Agregar(){
         String tipoProducto = txtProductos.getText();
         String nombre = txtNom.getText();
         String marca = txtMarca.getText();
@@ -410,17 +430,18 @@ public class Principal extends javax.swing.JFrame {
         
         if(tipoProducto.equals("") || nombre.equals("") || marca.equals("") || modelo.equals("") || numSerie.equals("") || local.equals("")){
             JOptionPane.showMessageDialog(null, "Favor de llenar todos los datos faltantes", "Mensaje de Error", JOptionPane.PLAIN_MESSAGE, iconoCajas);
-            if(model.getRowCount()>0){
-                 limpiarTabla(model);
-              }
+                 if(model.getRowCount()>0){
+                    limpiarTabla(model);
+                }
         }else{
-            String sql = "insert into `productos`(`TipoProducto`,`Nombre`,`Marca`,`Modelo`,`NumSerie`,`Localizacion`)values('"+tipoProducto+" ','"+nombre+"','"+marca+"','"+modelo+"','"+numSerie+"','"+local+"')";
+            String sql = "insert into productos(TipoProducto,Nombre,Marca,Modelo,NumSerie,Localizacion) values('" + tipoProducto + "','" + nombre + "','" + marca + "','" + modelo + "','" + numSerie + "','" + local + "')";
             try {
                 con = cn.getConnection();
                 st = con.createStatement();
                 st.executeUpdate(sql);
                 JOptionPane.showMessageDialog(null, "Producto agregado correctamente", "Mensaje de guardar", JOptionPane.PLAIN_MESSAGE, iconoGuardar);
                 limpiarTabla(model);
+                
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(null, "Error al agregar los datos a la base de datos", "Mensaje de Error", JOptionPane.PLAIN_MESSAGE, iconoError);
                  System.err.println("Error: "+e);
@@ -429,13 +450,71 @@ public class Principal extends javax.swing.JFrame {
         }
     }
     
+    void Modificar(){
+        String tipoProducto = txtProductos.getText();
+        String nombre = txtNom.getText();
+        String marca = txtMarca.getText();
+        String modelo = txtModelo.getText();
+        String numSerie = txtNumSerie.getText();
+        String local = txtLocalizacion.getText();
+        String sql = "update productos set TipoProducto='" + tipoProducto + "',Nombre='" + nombre + "',Marca='" + marca + "',Modelo='" + modelo + "',NumSerie='" + numSerie + "',Localizacion='" + local + "' where Id=" + id;
+         try {
+            if (tipoProducto != null || nombre != null || marca != null || modelo != null || numSerie != null || local != null) {
+                con = cn.getConnection();
+                st = con.createStatement();
+                st.executeUpdate(sql);
+                JOptionPane.showMessageDialog(null, "Producto modificado", "Producto Actualizado", JOptionPane.PLAIN_MESSAGE, iconoCajas);
+                limpiarTabla(model);
+                
+            } else {
+                JOptionPane.showMessageDialog(null, "No se puedo modificar el producto", "Mensaje de Error", JOptionPane.PLAIN_MESSAGE, iconoError);
+            }
+
+        } catch (Exception e) {
+        }
+    }
+    
+    void Eliminar() {
+        String sql = "delete from productos where Id=" + id;        
+        int fila = TablaDatos.getSelectedRow();
+        if (fila < 0) {
+            JOptionPane.showMessageDialog(null, "Producto no seleccionado", "Mensaje de Error", JOptionPane.PLAIN_MESSAGE, iconoError);
+        } else {
+                try {
+                    con = cn.getConnection();
+                    st = con.createStatement();
+                    st.executeUpdate(sql);
+                    JOptionPane.showMessageDialog(null, "Producto Eliminado", "Mensaje de producto eliminado", JOptionPane.PLAIN_MESSAGE, iconoProductoEliminado);
+                    limpiarTabla(model);
+                    
+                } catch (Exception e) {
+                }      
+        }
+    }
+    
+    void nuevo(){
+        txtId.setText("");
+        txtProductos.setText("");
+        txtNom.setText("");
+        txtMarca.setText("");
+        txtModelo.setText("");
+        txtNumSerie.setText("");
+        txtLocalizacion.setText("");
+        txtProductos.requestFocus();
+    }
+    
       void limpiarTabla(DefaultTableModel model) {
-       
          for (int i = 0; i <= TablaDatos.getRowCount()-1; i++) {
             model.removeRow(i);
             i = i - 1;
-         }
+         }  
     }
+      
+     
+    void Actualizar(){
+        limpiarTabla(model);
+        listar();
+    }   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable TablaDatos;
