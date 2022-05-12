@@ -1,7 +1,7 @@
 # Readme
-![GitHub last commit](https://img.shields.io/github/last-commit/Alane-Tc/Loteria-Mexicana?style=for-the-badge) ![GitHub forks](https://img.shields.io/github/forks/Alane-Tc/Loteria-Mexicana?style=for-the-badge) ![GitHub top language](https://img.shields.io/github/languages/top/Alane-Tc/Loteria-Mexicana?style=for-the-badge) 
+![GitHub last commit](https://img.shields.io/github/last-commit/Alane-Tc/Inventario_nidec?style=for-the-badge) ![GitHub forks](https://img.shields.io/github/forks/Alane-Tc/Inventario_nidec?style=for-the-badge) ![GitHub top language](https://img.shields.io/github/languages/top/Alane-Tc/Inventario_nidec?style=for-the-badge) 
 
-![GitHub Release Date](https://img.shields.io/github/release-date/Alane-Tc/Loteria-Mexicana?style=for-the-badge)
+![GitHub Release Date](https://img.shields.io/github/release-date/Alane-Tc/Inventario_nidec?style=for-the-badge)
 
 ------------
 ## 1-Descripción
@@ -24,13 +24,13 @@ Esto ha generado grandes problemas dentro del área de TI como:
 ------------
 
 
-## 1.1-Solución
+### 1.1-Solución
 Con el fin de disminuir todas estas problemáticas generadas dentro de esta área, como proyecto nos centraremos en el registro del inventario de TI completo, ingresando todo dispositivo nuevo que entre en el área, registrando a quien le fue asignado y datos clave de este, ya que cada uno cuenta con identificador único.
 
 ------------
 
 
-## 1.2-Arquitectura
+### 1.2-Arquitectura
 El sistema esta construido y diseñado en la arquitectura MVC
 ![](https://github.com/Alane-Tc/Inventario_nidec/blob/main/ss/Arquitectura.png?raw=true)
 
@@ -38,7 +38,7 @@ El sistema esta construido y diseñado en la arquitectura MVC
 - Es indispensable tener una version de java 8
 - Tener instalado XAMPP.
 
-##2.1-Instalación
+### 2.1-Instalación
 1. Tener una versión del JDK superior a la 11.
 2. Debemos descargar XAMPP. 
 3. Debemos descargar el archivo JAR. 
