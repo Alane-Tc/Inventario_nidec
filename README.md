@@ -12,7 +12,7 @@ Nidec al ser una empresa grande, cuenta con diferentes departamentos el cual con
 - Teclado 
 - Mouse 
 
-------------
+
 
 
 Esto ha generado grandes problemas dentro del área de TI como:
