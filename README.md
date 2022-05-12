@@ -1,10 +1,10 @@
-#Readme
+# Readme
 ![GitHub last commit](https://img.shields.io/github/last-commit/Alane-Tc/Loteria-Mexicana?style=for-the-badge) ![GitHub forks](https://img.shields.io/github/forks/Alane-Tc/Loteria-Mexicana?style=for-the-badge) ![GitHub top language](https://img.shields.io/github/languages/top/Alane-Tc/Loteria-Mexicana?style=for-the-badge) 
 
 ![GitHub Release Date](https://img.shields.io/github/release-date/Alane-Tc/Loteria-Mexicana?style=for-the-badge)
 
 ------------
-##1-Descripción
+## 1-Descripción
 Nidec al ser una empresa grande, cuenta con diferentes departamentos el cual conforman esta, en la cual el área de IT se encuentra caótica, debido a que no se lleva un control del inventario:
 - CPU
 - Monitores 
@@ -24,17 +24,17 @@ Esto ha generado grandes problemas dentro del área de TI como:
 ------------
 
 
-##1.1-Solución
+## 1.1-Solución
 Con el fin de disminuir todas estas problemáticas generadas dentro de esta área, como proyecto nos centraremos en el registro del inventario de TI completo, ingresando todo dispositivo nuevo que entre en el área, registrando a quien le fue asignado y datos clave de este, ya que cada uno cuenta con identificador único.
 
 ------------
 
 
-##1.2-Arquitectura
+## 1.2-Arquitectura
 El sistema esta construido y diseñado en la arquitectura MVC
 ![](https://github.com/Alane-Tc/Inventario_nidec/blob/main/ss/Arquitectura.png?raw=true)
 
-##2-Requerimientos
+## 2-Requerimientos
 - Es indispensable tener una version de java 8
 - Tener instalado XAMPP.
 
