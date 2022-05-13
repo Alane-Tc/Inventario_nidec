@@ -58,6 +58,8 @@ El sistema esta construido y diseñado en la arquitectura MVC
 ![](https://github.com/Alane-Tc/Inventario_nidec/blob/main/ss/SS3.PNG?raw=true)
 Esta es la interfaz de usuario, en donde podras agragar los productos con su respectivo nombre, marca, modelo, num serie y localizacion. 
 En el sistema podras agragar, modificar, eliminar y buscar productos del inventario.
+Puedes ver el video de la funcionalidad del sistema
+[Video Inventario](https://youtu.be/cvXlAoAaxsE "Video Inventario")
 
 ------------
 
