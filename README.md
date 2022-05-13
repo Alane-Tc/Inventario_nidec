@@ -43,3 +43,31 @@ El sistema esta construido y diseñado en la arquitectura MVC
 2. Debemos descargar XAMPP. 
 3. Debemos descargar el archivo JAR. 
 
+------------
+
+
+### Configuración
+1. En el programa XAMPP elegir el apartado de Apache y MySQL
+![](https://raw.githubusercontent.com/Alane-Tc/Inventario_nidec/901a5dbdabf5233e1f4d277b09b133181e82b112/ss/SS2.PNG)
+2. Poner en el navegador `localhost:8080 ` esto los dirigira a PHPMyAdmin
+3.  Crear la base de datos y poner los campos requeridos del sistema **OJO** llamar a la base de datos en esta linea de código poner el nombre de la base de datos creada `con=DriverManager.getConnection("jdbc:mysql://localhost/nombre_base_datos","root","");`
+
+------------
+
+### Uso
+![](https://github.com/Alane-Tc/Inventario_nidec/blob/main/ss/SS3.PNG?raw=true)
+Esta es la interfaz de usuario, en donde podras agragar los productos con su respectivo nombre, marca, modelo, num serie y localizacion. 
+En el sistema podras agragar, modificar, eliminar y buscar productos del inventario.
+
+------------
+
+### Contribuciones
+Puedes usar el proyecto o tambien puedes mencionarnos mejoras del sistema, ya que esto es una primera version. 
+Si deseas clonarlo si asi lo deseas 
+
+------------
+
+## Roadmap
+- Estamos trabajando en mejorar la interfaz de usuario
+- Correciones de bugs
+- Agregar nuevas funcionalidades
